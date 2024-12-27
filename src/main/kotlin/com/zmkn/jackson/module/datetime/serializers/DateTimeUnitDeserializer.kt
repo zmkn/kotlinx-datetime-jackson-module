@@ -32,7 +32,7 @@ class DateTimeUnitDeserializer : JsonDeserializer<DateTimeUnit>() {
                 DateTimeUnit.TimeBased(nanoseconds)
             }
 
-            else -> throw IllegalArgumentException("Unknown type: $type")
+            else -> throw IllegalArgumentException("Unknown DateTimeUnit type: $type")
         }
     }
 }
