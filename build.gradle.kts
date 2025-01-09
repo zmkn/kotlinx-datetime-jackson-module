@@ -36,7 +36,7 @@ kotlin {
     }
 }
 
-configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+ktlint {
     filter {
         exclude {
             // 排除所有以 .gradle.kts 结尾的文件和 build/generated 目录下的所有文件
@@ -52,8 +52,8 @@ publishing {
             artifactId = project.name
             from(components["java"])
             pom {
-                name.set("Kotlinx datetime jackson module")
-                description.set("kotlinx datetime module for jackson")
+                name.set("Kotlinx Datetime Jackson Module")
+                description.set("Kotlinx datetime module for Jackson")
                 url.set("https://github.com/zmkn/kotlinx-datetime-jackson-module")
                 inceptionYear.set("2025")
                 licenses {
@@ -86,11 +86,11 @@ publishing {
 
 jreleaser {
     project {
-        name.set("kotlinx-datetime-jackson-module")
+        name.set("Kotlinx Datetime Jackson Module")
 
         // A short description (60 chars max).
         //  Only if configured distributions or announcers.
-        description.set("kotlinx datetime module for jackson")
+        description.set("Kotlinx datetime module for Jackson")
 
         // A list of author names.
         //  Only if configured distributions or announcers.
