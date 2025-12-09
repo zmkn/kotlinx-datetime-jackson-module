@@ -10,10 +10,6 @@ import kotlinx.datetime.TimeZone
 class StringToFixedOffsetTimeZoneDeserializer : JsonDeserializer<FixedOffsetTimeZone>() {
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): FixedOffsetTimeZone {
         val zone = TimeZone.of(p.valueAsString)
-        return if (zone is FixedOffsetTimeZone) {
-            zone
-        } else {
-            throw JsonMappingException(p, "Timezone identifier '$zone' does not correspond to a fixed-offset timezone")
-        }
+        return zone as? FixedOffsetTimeZone ?: throw JsonMappingException(p, "Timezone identifier '$zone' does not correspond to a fixed-offset timezone")
     }
 }
