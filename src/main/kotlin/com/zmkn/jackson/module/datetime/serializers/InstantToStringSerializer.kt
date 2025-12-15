@@ -1,12 +1,17 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.Instant
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class InstantToStringSerializer : JsonSerializer<Instant>() {
-    override fun serialize(value: Instant, gen: JsonGenerator, serializers: SerializerProvider) {
+@Deprecated(
+    "Use com.zmkn.jackson.module.time.serializers.InstantToStringSerializer instead",
+    ReplaceWith("com.zmkn.jackson.module.time.serializers.InstantToStringSerializer", "com.zmkn.jackson.module.time.serializers.InstantToStringSerializer"),
+    level = DeprecationLevel.WARNING
+)
+class InstantToStringSerializer : ValueSerializer<Instant>() {
+    override fun serialize(value: Instant, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeString(value.toString())
     }
 }

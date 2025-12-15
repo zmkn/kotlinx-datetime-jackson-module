@@ -1,12 +1,12 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.DateTimePeriod
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class DateTimePeriodToStringSerializer : JsonSerializer<DateTimePeriod>() {
-    override fun serialize(value: DateTimePeriod, gen: JsonGenerator, serializers: SerializerProvider) {
+class DateTimePeriodToStringSerializer : ValueSerializer<DateTimePeriod>() {
+    override fun serialize(value: DateTimePeriod, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeString(value.toString())
     }
 }

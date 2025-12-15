@@ -1,14 +1,14 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.DateTimeUnit
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class DayBasedDateTimeUnitSerializer : JsonSerializer<DateTimeUnit.DayBased>() {
-    override fun serialize(value: DateTimeUnit.DayBased, gen: JsonGenerator, serializers: SerializerProvider) {
+class DayBasedDateTimeUnitSerializer : ValueSerializer<DateTimeUnit.DayBased>() {
+    override fun serialize(value: DateTimeUnit.DayBased, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeStartObject()
-        gen.writeNumberField("days", value.days)
+        gen.writeNumberProperty("days", value.days)
         gen.writeEndObject()
     }
 }

@@ -1,12 +1,12 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.UtcOffset
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class UtcOffsetToStringSerializer : JsonSerializer<UtcOffset>() {
-    override fun serialize(value: UtcOffset, gen: JsonGenerator, serializers: SerializerProvider) {
+class UtcOffsetToStringSerializer : ValueSerializer<UtcOffset>() {
+    override fun serialize(value: UtcOffset, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeString(value.toString())
     }
 }

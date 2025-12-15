@@ -1,12 +1,12 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.LocalTime
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class LocalTimeToStringSerializer : JsonSerializer<LocalTime>() {
-    override fun serialize(value: LocalTime, gen: JsonGenerator, serializers: SerializerProvider) {
+class LocalTimeToStringSerializer : ValueSerializer<LocalTime>() {
+    override fun serialize(value: LocalTime, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeString(value.toString())
     }
 }

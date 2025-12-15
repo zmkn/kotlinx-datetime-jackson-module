@@ -1,10 +1,10 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.databind.DeserializationContext
-import com.fasterxml.jackson.databind.JsonDeserializer
 import kotlinx.datetime.LocalDate
+import tools.jackson.core.JsonParser
+import tools.jackson.databind.DeserializationContext
+import tools.jackson.databind.ValueDeserializer
 
-class StringToLocalDateDeserializer : JsonDeserializer<LocalDate>() {
-    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): LocalDate = LocalDate.parse(p.valueAsString)
+class StringToLocalDateDeserializer : ValueDeserializer<LocalDate>() {
+    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): LocalDate = LocalDate.parse(p.string)
 }

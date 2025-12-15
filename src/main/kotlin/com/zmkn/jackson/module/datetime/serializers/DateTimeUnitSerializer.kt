@@ -1,25 +1,25 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.DateTimeUnit
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class DateTimeUnitSerializer : JsonSerializer<DateTimeUnit>() {
-    override fun serialize(value: DateTimeUnit, gen: JsonGenerator, serializers: SerializerProvider) {
+class DateTimeUnitSerializer : ValueSerializer<DateTimeUnit>() {
+    override fun serialize(value: DateTimeUnit, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeStartObject()
-        gen.writeStringField("type", value::class.simpleName ?: "Unknown")
+        gen.writeStringProperty("type", value::class.simpleName ?: "Unknown")
         when (value) {
             is DateTimeUnit.DayBased -> {
-                gen.writeNumberField("days", value.days)
+                gen.writeNumberProperty("days", value.days)
             }
 
             is DateTimeUnit.MonthBased -> {
-                gen.writeNumberField("months", value.months)
+                gen.writeNumberProperty("months", value.months)
             }
 
             is DateTimeUnit.TimeBased -> {
-                gen.writeNumberField("nanoseconds", value.nanoseconds)
+                gen.writeNumberProperty("nanoseconds", value.nanoseconds)
             }
         }
         gen.writeEndObject()

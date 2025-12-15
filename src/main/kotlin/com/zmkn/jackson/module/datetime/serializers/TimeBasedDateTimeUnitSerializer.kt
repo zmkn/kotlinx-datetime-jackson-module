@@ -1,14 +1,14 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
-import com.fasterxml.jackson.databind.SerializerProvider
 import kotlinx.datetime.DateTimeUnit
+import tools.jackson.core.JsonGenerator
+import tools.jackson.databind.SerializationContext
+import tools.jackson.databind.ValueSerializer
 
-class TimeBasedDateTimeUnitSerializer : JsonSerializer<DateTimeUnit.TimeBased>() {
-    override fun serialize(value: DateTimeUnit.TimeBased, gen: JsonGenerator, serializers: SerializerProvider) {
+class TimeBasedDateTimeUnitSerializer : ValueSerializer<DateTimeUnit.TimeBased>() {
+    override fun serialize(value: DateTimeUnit.TimeBased, gen: JsonGenerator, ctxt: SerializationContext) {
         gen.writeStartObject()
-        gen.writeNumberField("nanoseconds", value.nanoseconds)
+        gen.writeNumberProperty("nanoseconds", value.nanoseconds)
         gen.writeEndObject()
     }
 }

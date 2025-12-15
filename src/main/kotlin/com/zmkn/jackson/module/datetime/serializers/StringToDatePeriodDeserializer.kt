@@ -1,15 +1,15 @@
 package com.zmkn.jackson.module.datetime.serializers
 
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.databind.DeserializationContext
-import com.fasterxml.jackson.databind.JsonDeserializer
-import com.fasterxml.jackson.databind.JsonMappingException
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.DateTimePeriod
+import tools.jackson.core.JsonParser
+import tools.jackson.databind.DatabindException
+import tools.jackson.databind.DeserializationContext
+import tools.jackson.databind.ValueDeserializer
 
-class StringToDatePeriodDeserializer : JsonDeserializer<DatePeriod>() {
-    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): DatePeriod = when (val period = DateTimePeriod.parse(p.valueAsString)) {
-        is DatePeriod -> period
-        else -> throw JsonMappingException(p, "$period is not a date-based period")
+class StringToDatePeriodDeserializer : ValueDeserializer<DatePeriod>() {
+    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): DatePeriod {
+        val period = DateTimePeriod.parse(p.string)
+        return period as? DatePeriod ?: throw DatabindException.from(p, "$period is not a date-based period")
     }
 }

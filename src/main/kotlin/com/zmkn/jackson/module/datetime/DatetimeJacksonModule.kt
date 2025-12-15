@@ -1,8 +1,8 @@
 package com.zmkn.jackson.module.datetime
 
-import com.fasterxml.jackson.databind.module.SimpleModule
 import com.zmkn.jackson.module.datetime.serializers.*
 import kotlinx.datetime.*
+import tools.jackson.databind.module.SimpleModule
 
 object DatetimeJacksonModule {
     val datePeriodSerializers = fun SimpleModule.() {
